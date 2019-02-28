@@ -60,3 +60,27 @@ select {
     font-weight: 600;
     margin-top: 10px;
 }
+
+.imgClass{
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+    border-radius: 100%;
+    margin: 10px;
+}
+
+.divOuter{
+    display: flex;
+    justify-content: center;
+}
+
+.leftDiv{
+    margin: 10px;
+}
+
+.rightDiv{
+    
+}
+.pagin{
+    text-align: center;
+}

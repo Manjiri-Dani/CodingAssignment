@@ -23,7 +23,7 @@ class RootContainer extends Component {
         this.props.submitForm(formData);
 
         axios.get('https://api.github.com/search/users?q=' + formData.name).then((res) => {
-            console.log(JSON.stringify(res.data));
+            // console.log(JSON.stringify(res.data));
             this.setState({
                 getData: res.data
             });
@@ -36,7 +36,8 @@ class RootContainer extends Component {
 
     renderComponents() {
         let { formData } = this.props.inputdata
-        return <Search formData={formData} handleSubmit={this.onshandler.bind(this)} />
+        return <Search formData={formData} handleSubmit={this.onshandler.bind(this)
+        } />
     }
 
     render() {

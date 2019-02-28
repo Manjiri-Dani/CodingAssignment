@@ -26,11 +26,6 @@ class Routing extends React.Component {
                 component: Display,
                 exact: true
             },
-            // {
-            //     path: '/display',
-            //     component: OutputData,
-            //     exact: false
-            // },
             {
                 path: '/root/search',
                 component: RootContainer,
