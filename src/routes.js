@@ -1,7 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-import Display from './container/RootDisplay';
-import Home from './components/form/home';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import RootContainer from './container/RootContainer';
 
 class Routes extends React.Component {
@@ -22,18 +20,8 @@ class Routing extends React.Component {
         super(props)
         this.routes = [
             {
-                path: '/dispcontainer/search',
-                component: Display,
-                exact: true
-            },
-            {
-                path: '/root/search',
-                component: RootContainer,
-                exact: false
-            },
-            {
                 path: '/',
-                component: Home,
+                component: RootContainer,
                 exact: true
             }
         ]
@@ -42,11 +30,8 @@ class Routing extends React.Component {
     render() {
         return (
             <div>
-                <header>
-                    <Link to="/root/search">Search Record</Link>
-                </header>
                 <Switch>
-                    {this.routes.map((route, i) => <Route path={route.path} exact={route.exact} component={route.component} />)}
+                    {this.routes.map((route, i) => <Route key={i} path={route.path} exact={route.exact} component={route.component} />)}
                 </Switch>
             </div>
         )

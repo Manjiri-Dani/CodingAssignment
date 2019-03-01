@@ -5,12 +5,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import axios from 'axios';
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import Pagination from "material-ui-flat-pagination";
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const theme = createMuiTheme();
 class SearchDisplay extends Component {
 
     constructor(props) {
@@ -30,10 +25,8 @@ class SearchDisplay extends Component {
     }
 
     getRepository = (name) => {
-        // let getRepo = event;
         axios.get('https://api.github.com/users/' + name + '/repos').then((res) => {
-            console.log((res.data));
-            let obj = this.state.getRepo
+            let obj = this.state.getRepo;
             obj[name] = res.data
             this.setState({
                 getRepo: obj,
@@ -44,18 +37,18 @@ class SearchDisplay extends Component {
         })
     }
 
-    // async getRepo(name) {
-    //     try {
-    //         const repositories = await axios.get('https://api.github.com/users/' + name + '/repos')
-    //         return repositories.map((data, i) => (
-    //             <div key={i}>
-    //                 <div>{data.name}:{data.language}</div>
-    //             </div>
-    //         ))
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
+    async getRepo(name) {
+        try {
+            const repositories = await axios.get('https://api.github.com/users/' + name + '/repos')
+            return repositories.map((data, i) => (
+                <div key={i}>
+                    <div>{data.name}:{data.language}</div>
+                </div>
+            ))
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     renderResults() {
         let data = this.props.searchData.items;
@@ -114,30 +107,18 @@ class SearchDisplay extends Component {
         let paginationUnits = data.length / 5;
         let paginationButtons = []
         for (let index = 0; index < paginationUnits; index++) {
-            paginationButtons.push(<button onClick={(e) => this.handlePaginationClick(index + 1)}> {index + 1} </button>);
+            paginationButtons.push(<button key={index} onClick={(e) => this.handlePaginationClick(index + 1)}> {index + 1} </button>);
         }
         return paginationButtons;
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 Your Search Result :
                 <div>
                     {this.renderResults()}
-                    {/* <MuiThemeProvider theme={theme} >
-                        <CssBaseline />
-                        <Pagination
-                            className="pagin"
-                            limit={5}
-                            offset={this.state.offset}
-                            startIndex={this.state.startIndex}
-                            total={30}
-                            onClick={(e) => console.log(e)}
-                        />
-                    </MuiThemeProvider> */}
-                    <div>
+                    <div className="pagin">
                         {this.renderPagination()}
                     </div>
                 </div>
