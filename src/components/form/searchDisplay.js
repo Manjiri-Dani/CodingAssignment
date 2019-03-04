@@ -30,7 +30,7 @@ class SearchDisplay extends Component {
             obj[name] = res.data
             this.setState({
                 getRepo: obj,
-                activeCollapse: -1
+                // activeCollapse: -1
             });
         }).catch((err) => {
             console.log(err);
@@ -64,13 +64,14 @@ class SearchDisplay extends Component {
                         <div className="leftDiv">
                             {i.login}
 
-                            <div className="rightDiv">
-                                {i.events_url}
+                            <div>
+                                {i.html_url}
+                                {this.getRepository(i.login)}
                             </div>
                             <ExpansionPanel>
                                 <ExpansionPanelSummary>
                                     <button onClick={(e) => {
-                                        this.getRepository(i.login);
+                                        // this.getRepository(i.login);
                                     }}>Details</button>
                                 </ExpansionPanelSummary>
 
@@ -113,9 +114,12 @@ class SearchDisplay extends Component {
     }
 
     render() {
+        // console.log(this.props)
         return (
             <div>
-                Your Search Result :
+                <div className="titleDiv">
+                    Total Results : {this.props.searchData.total_count}
+                </div>
                 <div>
                     {this.renderResults()}
                     <div className="pagin">

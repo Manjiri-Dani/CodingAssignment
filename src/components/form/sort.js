@@ -14,7 +14,7 @@ class Sort extends Component {
     render() {
         return (
             <div>
-                <select name="Sort" onClick={(e) => this.dropdownClick(e)}>
+                <select name="Sort" onClick={(e) => this.dropdownClick(e)} placeholder="Sort By" className="sortBox">
                     <option value="SortByName">Sort[A-Z]</option>
                     <option value="SortByName">Sort[Z-A]</option>
                     <option value="RankUp">Rank up</option>

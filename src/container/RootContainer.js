@@ -32,8 +32,10 @@ class RootContainer extends Component {
     renderComponents() {
         let { formData } = this.props.inputdata
         return (<div>
-            <Sort></Sort>
-            <Search formData={formData} handleSubmit={this.onshandler.bind(this)} />
+            <div className="divHeader">
+                <Sort></Sort>
+                <Search formData={formData} handleSubmit={this.onshandler.bind(this)} />
+            </div>
             {this.state.getData.items ? <SearchDisplay searchData={this.state.getData}></SearchDisplay>
                 : null}
         </div>

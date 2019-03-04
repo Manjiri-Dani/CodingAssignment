@@ -71,16 +71,37 @@ select {
 
 .divOuter{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    width: 50%;
+    /* height: 150px; */
+    margin: 0 auto;
+    padding:20px
 }
 
+.divHeader{
+    display: flex;
+    justify-content: center;
+    background-color: #2196F3
+}
 .leftDiv{
     margin: 10px;
 }
 
-.rightDiv{
-    
-}
 .pagin{
     text-align: center;
+    width: 100%;
+}
+
+.sortBox{
+    height: 41%;
+    margin-top: 13%;
+    background-color: white;
+}
+
+.titleDiv{
+    margin: 0 auto;
+    text-align: left;
+    width: 50%;
+    margin-bottom: 2%;
+    margin-top: 2%
 }
