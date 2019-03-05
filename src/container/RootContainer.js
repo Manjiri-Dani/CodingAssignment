@@ -12,7 +12,8 @@ class RootContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            getData: [],
+            getData: {
+            },
             sortBy: 'SortByName'
         }
     }
@@ -32,7 +33,7 @@ class RootContainer extends Component {
     }
 
     getSortedData = (data) => {
-        console.log(data.items)
+        // console.log(data.items)
         var _ = require('lodash')
         switch (this.state.sortBy) {
             case 'SortByName':
@@ -63,14 +64,15 @@ class RootContainer extends Component {
 
     renderComponents() {
         let { formData } = this.props.inputdata
-        return (<div>
-            <div className="divHeader">
-                <Sort getsortMethod={this.getsortMethod.bind(this)}></Sort>
-                <Search formData={formData} handleSubmit={this.onshandler.bind(this)} />
+        return (
+            <div className="MostOuter">
+                <div className="divHeader">
+                    <Sort getsortMethod={this.getsortMethod.bind(this)}></Sort>
+                    <Search formData={formData} handleSubmit={this.onshandler.bind(this)} />
+                </div>
+                {this.state.getData.items ? <SearchDisplay searchData={this.state.getData}></SearchDisplay>
+                    : ''}
             </div>
-            {this.state.getData.items ? <SearchDisplay searchData={this.state.getData}></SearchDisplay>
-                : null}
-        </div>
         )
     }
 

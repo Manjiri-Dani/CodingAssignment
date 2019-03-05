@@ -8,7 +8,6 @@ class Search extends Component {
             formData: {
                 name: '',
             },
-            type: ['text']
         }
     }
 
@@ -34,18 +33,20 @@ class Search extends Component {
         const keys = Object.keys(formData)
         return (
             <div className="container">
-                <form onSubmit={this.onshandler}>
-                    {keys.map((key, i) =>
-                        <div key={i} className="form_element">
-                            <input
-                                type={type[i]}
-                                name={key}
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.formData[key]}
-                            ></input>
-                            <button type="submit">Submit</button>
-                        </div>
-                    )}
+                <form onSubmit={this.onshandler} className="form_element">
+
+                    <div >
+                        <input
+                            type="text"
+                            name="name"
+                            onChange={this.handleChange.bind(this)}
+                            value={this.state.formData.name}
+                        >
+                        </input>
+                        <button type="submit"><i class="material-icons">
+                            search</i></button>
+                    </div>
+
                 </form>
             </div>
         )

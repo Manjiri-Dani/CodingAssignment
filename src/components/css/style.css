@@ -3,7 +3,6 @@ body {
     margin:0;
     font-family: 'Roboto', sans-serif;
 }
-
 header {
     border-bottom: 1px solid #b6b6b6;
     box-sizing: border-box;
@@ -11,7 +10,6 @@ header {
     background: #dfdfdf;
     margin-bottom: 10px;
 }
-
 header a {
     padding: 5px 10px;
     background: #2196F3;
@@ -21,46 +19,39 @@ header a {
     color: #fff;
     font-weight: 500;
 }
-
 .container {
     padding: 10px 20px;
+    font-family: 'Lato', sans-serif;
 }
-
 .form_element {
     margin: 20px 0px;
 }
-
 .form_element label {
     display: block;
     margin-bottom: 5px;
     font-size: 20px;
     font-weight: 300;
 }
-
 input {
     font-size: 20px;
     padding: 8px 12px;
     box-sizing: border-box;
 }
-
 button {
     background: rgb(28, 45, 146);
     color: #fff;
     font-size: 15px;
     padding: 10px 20px;
 }
-
 select {
     width: 236px;
     font-size: 15px;
 }
-
 .label_error {
     color: #FF5722;
     font-weight: 600;
     margin-top: 10px;
 }
-
 .imgClass{
     width: 100px;
     height: 100px;
@@ -68,13 +59,11 @@ select {
     margin: 10px;
     margin-top: 30px;
 }
-
 .divOuter{
     display: flex;
     margin: 0 auto;
     padding:20px
 }
-
 .divHeader{
     display: flex;
     justify-content: center;
@@ -83,37 +72,32 @@ select {
 .leftDiv{
     margin: 10px;
 }
-
 .pagin{
     text-align: center;
     width: 100%;
 }
-
 .sortBox{
     height: 41%;
-    margin-top: 13%;
+    margin-top: 15%;
     background-color: white;
+    font-family: 'Lato', sans-serif;
 }
-
 .titleDiv{
     margin: 0 auto;
     text-align: left;
     width: 63%;
     margin-bottom: 2%;
     padding-top: 2%;
+    font-family: 'Lato', sans-serif;
   }
-
 .paperstyle{
     width: 60%;
     margin: 0 auto;
     padding: 20px;
     margin-bottom: 40px;
+    color: grey;
+    font-family: 'Lato', sans-serif;
 }
-
-.expansionDetails{
-    margin-top: 10px!important;
-    }
-
 .expansionSummary{
     width: 15rem;
     border:none; 
@@ -121,14 +105,16 @@ select {
 .ScoreDiv{
     margin-top: 25px;
 }
-
 .MostOuter{
     background:aliceblue;
+    height:100%
 }
 .row{
     padding:20px;
 }
-
 .ExpansionDiv{
     margin-top: 2%!important;
+}
+.RootClass{
+     background:aliceblue;
 }
