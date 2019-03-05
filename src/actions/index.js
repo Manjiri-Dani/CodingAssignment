@@ -4,4 +4,3 @@ export function submitForm(param) {
         payload: param
     }
 }
-

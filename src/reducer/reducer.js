@@ -5,10 +5,8 @@ export default function (state = {
     switch (action.type) {
         case 'SUBMIT_FORM':
             return { ...state, inputdata: action.payload }
-
         default:
             return state;
     }
-
 
 }

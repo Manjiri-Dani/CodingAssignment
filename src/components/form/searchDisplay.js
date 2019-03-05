@@ -5,6 +5,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import axios from 'axios';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 class SearchDisplay extends Component {
 
@@ -28,65 +30,79 @@ class SearchDisplay extends Component {
         axios.get('https://api.github.com/users/' + name + '/repos').then((res) => {
             let obj = this.state.getRepo;
             obj[name] = res.data
-            this.setState({
-                getRepo: obj,
-                // activeCollapse: -1
-            });
+            // console.log(obj[name].length)
+            if (obj[name].length > 0) {
+                this.setState({
+                    getRepo: obj,
+                    // activeCollapse: -1
+                });
+            }
         }).catch((err) => {
             console.log(err);
         })
     }
 
-    async getRepo(name) {
-        try {
-            const repositories = await axios.get('https://api.github.com/users/' + name + '/repos')
-            return repositories.map((data, i) => (
-                <div key={i}>
-                    <div>{data.name}:{data.language}</div>
-                </div>
-            ))
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    // async getRepo(name) {
+    //     try {
+    //         const repositories = await axios.get('https://api.github.com/users/' + name + '/repos')
+    //         return repositories.map((data, i) => (
+    //             <div key={i}>
+    //                 <div>{data.name}:{data.language}</div>
+    //             </div>
+    //         ))
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
 
     renderResults() {
         let data = this.props.searchData.items;
         let results = [];
+        console.log(this.state.getRepo)
         const { getRepo } = this.state;
         const { startIndex, offset } = this.state;
         for (let index = startIndex; index < offset; index++) {
             const i = data[index];
             if (i) {
                 results.push(
-                    <div className="divOuter">
-                        <img src={i['avatar_url']} class="imgClass" alt="Image1" />
-                        <div className="leftDiv">
-                            {i.login}
+                    <Paper className="paperstyle">
+                        <div className="divOuter">
+                            <img src={i['avatar_url']} class="imgClass" alt="Image1" />
 
-                            <div>
-                                {i.html_url}
-                                {this.getRepository(i.login)}
-                            </div>
-                            <ExpansionPanel>
-                                <ExpansionPanelSummary>
-                                    <button onClick={(e) => {
-                                        // this.getRepository(i.login);
-                                    }}>Details</button>
-                                </ExpansionPanelSummary>
+                            <Grid container className="leftDiv">
+                                <Grid item lg={9} ><h2>{i.login}</h2></Grid>
+                                <Grid item lg={3} className="ScoreDiv"><h4>Score:{i.score}</h4></Grid>
+                                <Grid item lg={12} >
+                                    <a href={i.html_url} target="_blank">{i.html_url}</a>
+                                </Grid>
+                                <div className="ExpansionDiv">
+                                    <ExpansionPanel>
+                                        <ExpansionPanelSummary className="expansionSummary">
+                                            <button onClick={(e) => {
+                                                this.getRepository(i.login);
+                                            }}>List of Repositories</button>
+                                        </ExpansionPanelSummary>
 
-                                <ExpansionPanelDetails>
-                                    <div>
-                                        {getRepo[i.login] ? getRepo[i.login].map((data, i) => (
-                                            <div key={i}>
-                                                <div>{data.name}:{data.language}</div>
-                                            </div>
-                                        )) : ''}
-                                    </div>
-                                </ExpansionPanelDetails>
-                            </ExpansionPanel>
+                                        <ExpansionPanelDetails className="expansionDetails">
+                                            {getRepo[i.login] ?
+                                                <div>
+                                                    {getRepo[i.login].map((data, i) => (
+                                                        <div key={i}>
+                                                            <div className="row">{data.name}:
+                                                            {data.language ? data.language : 'Not Provided'}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                                :
+                                                <div> No Repositories Found </div>
+                                            }
+                                        </ExpansionPanelDetails>
+
+                                    </ExpansionPanel>
+                                </div>
+                            </Grid>
                         </div>
-                    </div>
+                    </Paper>
                 )
             }
         }
@@ -114,9 +130,9 @@ class SearchDisplay extends Component {
     }
 
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         return (
-            <div>
+            <div className="MostOuter">
                 <div className="titleDiv">
                     Total Results : {this.props.searchData.total_count}
                 </div>
