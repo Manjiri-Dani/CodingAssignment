@@ -85,7 +85,9 @@ class SearchDisplay extends Component {
                                         <ExpansionPanelSummary className="expansionSummary">
                                             <button onClick={(e) => {
                                                 this.getRepository(i.login);
-                                            }}>List of Repositories</button>
+                                            }}>
+                                                {expanded === i.login ? 'Collapse' : 'Details'}
+                                            </button>
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails >
                                             {getRepo[i.login] && getRepo[i.login].length > 0 ?

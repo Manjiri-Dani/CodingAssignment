@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import MaterialIcon from '@material/react-material-icon';
+//import TextField from '@material-ui/core/TextField';
 
 class Search extends Component {
 
@@ -29,22 +31,25 @@ class Search extends Component {
     }
 
     render() {
-        const { formData, type } = this.state
-        const keys = Object.keys(formData)
+        // const { formData } = this.state
+        // const keys = Object.keys(formData)
         return (
             <div className="container">
                 <form onSubmit={this.onshandler} className="form_element">
 
-                    <div >
+                    <div className="searchDiv">
                         <input
+                            className="searchBox"
                             type="text"
                             name="name"
                             onChange={this.handleChange.bind(this)}
                             value={this.state.formData.name}
-                        >
-                        </input>
-                        <button type="submit"><i class="material-icons">
-                            search</i></button>
+                        />
+                        <button className="btnClass" type="submit">
+                            <MaterialIcon icon='search' className="IconClass" />
+                        </button>
+                        {/* <button className="btnClass" type="submit"><i class="material-icons">
+                            search</i></button> */}
                     </div>
 
                 </form>

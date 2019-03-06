@@ -52,7 +52,7 @@ class RootContainer extends Component {
                 return (
                     _.sortBy(data.items, 'score').reverse()
                 )
-            default: null
+            default: return null
         }
     }
 
