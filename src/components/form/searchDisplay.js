@@ -7,6 +7,21 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: '#2196F3',
+        color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 14,
+    },
+}))(TableCell);
 
 class SearchDisplay extends Component {
 
@@ -61,6 +76,7 @@ class SearchDisplay extends Component {
     // }
 
     renderResults() {
+        const { classes } = { ...Styles };
         let data = this.props.searchData.items;
         let results = [];
         const { getRepo } = this.state;
@@ -92,12 +108,29 @@ class SearchDisplay extends Component {
                                         <ExpansionPanelDetails >
                                             {getRepo[i.login] && getRepo[i.login].length > 0 ?
                                                 <div>
-                                                    {getRepo[i.login].map((data, i) => (
-                                                        <div key={i}>
-                                                            <div className="row">{data.name}:
-                                                            {data.language ? data.language : 'Language Not Provided'}</div>
-                                                        </div>
-                                                    ))}
+                                                    <Table className="table">
+                                                        <TableHead>
+                                                            {/* <TableRow className="rowOdd">
+                                                                    <h4>Repositories</h4>
+                                                               </TableRow> */}
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {getRepo[i.login].map((data, i) => (
+                                                                <TableRow className={i % 2 === 0 ? "rowEven" : "rowOdd"} key={i}>
+                                                                    <CustomTableCell component="th" scope="row">
+                                                                        {data.name} </CustomTableCell>
+                                                                    <CustomTableCell component="th" scope="row">{data.language ? data.language : 'Language Not Provided'}
+                                                                    </CustomTableCell>
+                                                                </TableRow>
+
+                                                                //  <div key={i}>
+                                                                //    <div className="row">{data.name}:
+                                                                //     {data.language ? data.language : 'Language Not Provided'}</div>
+                                                                //  </div>
+                                                            ))}
+                                                        </TableBody>
+                                                    </Table>
+
                                                 </div>
                                                 :
                                                 <div> No Repositories Found </div>
@@ -134,6 +167,8 @@ class SearchDisplay extends Component {
         return paginationButtons;
     }
 
+
+
     render() {
         // console.log(this.props)
         return (
@@ -154,5 +189,6 @@ class SearchDisplay extends Component {
         )
     }
 }
+
 
 export default withStyles(Styles)(SearchDisplay);  

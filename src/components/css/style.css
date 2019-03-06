@@ -38,7 +38,7 @@ input {
     box-sizing: border-box;
 }
 button {
-    background: rgb(28, 45, 146);
+    background: #2196F3;
     color: #fff;
     font-size: 15px;
     padding: 10px 20px;
@@ -159,4 +159,21 @@ input:-webkit-autofill:focus {
     border:none;
     background: aliceblue ;
     color: black
+}
+.root {
+    width: 100%,
+    /* margin-top : theme.spacing.unit * 3 */
+    /* overflow-x:auto */
+}
+table{
+    min-width: 1000px,
+}
+.rowOdd{
+    background-color: #dee2e6
+}
+.rowEven{
+    background-color: white
+}
+.button{
+    background:#2196F3;
 }
